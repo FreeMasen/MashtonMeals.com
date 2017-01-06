@@ -1,0 +1,36 @@
+#menu {
+    width: 15%;
+    max-width: 150px;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    z-index: 100%;
+    background: white;
+    position: absolute;
+}
+
+.menu-item {
+    margin-left: 2.5%;
+    width: 95%;
+    height: 4rem;
+    font-size: 18pt;
+}
+
+#menu-button {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    padding: 0;
+    margin: 5px;
+}
+
+.pushed {
+    width: 85%;
+    margin-left: 15%;
+}
+
+#title {
+    font-size: 20pt;
+    font-weight: bold;
+}

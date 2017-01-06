@@ -1,0 +1,33 @@
+<h1 id="message" *ngIf="message.length > 0">
+    {{message}}
+</h1>
+<div id="dashboard-content">
+    <md-card class="recipes post-list">
+        <md-card-title class="list-title">
+            Recipes
+        </md-card-title>
+        <md-card *ngFor="let recipe of recipes" class="post-preview recipe">
+            <md-card-title class="post-title">
+                {{ recipe.title }}
+            </md-card-title>
+            <img md-card-image src="{{ recipe.images[0] }}">
+            <md-card-content class="post-snippet">
+                {{ recipe.snippet }}
+            </md-card-content>
+        </md-card>
+    </md-card>
+    <md-card class="reviews post-list">
+        <md-card-title class="list-title">
+            Reviews
+        </md-card-title>
+        <md-card *ngFor="let review of reviews" class="post-preview review">
+            <md-card-title>
+                {{ review.title }}
+            </md-card-title>
+            <img md-card-image src="{{ review.images[0] }}">
+            <md-card-content class="post-snippet">
+                {{ review.snippet }}
+            </md-card-content>
+        </md-card>
+    </md-card>
+</div>

@@ -1,0 +1,41 @@
+#message {
+
+}
+
+#dashboard-content {
+    display: flex;
+    flex-flow: row;
+    flex-direction: row;
+}
+
+.post-list {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    width: 48%;
+    margin: 5px;
+    justify-content: space-between;
+}
+
+.list-title {
+    width: 100%;
+    text-align: center;
+    background-color: #3f51b5;
+    color: white;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.post-preview {
+    width: 40%;
+    margin: 2px;
+}
+
+.recipe {
+
+}
+
+.review {
+
+}

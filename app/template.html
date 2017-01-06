@@ -1,0 +1,14 @@
+<md-card id="menu" *ngIf="menuVis">
+    <div class="menu-items" *ngFor="let item of menuItems">
+        <button md-button color="primary" (click)="goToItem(item.path)" class="menu-item">{{item.text}}</button>
+    </div>
+</md-card>
+<md-card id="main" [ngClass]="{pushed: menuVis}">
+    <md-toolbar id="title-bar" color="primary" >
+        <button md-button id="menu-button" (click)="toggleMenu()" >
+            <md-icon>menu</md-icon>
+        </button>
+        <span id="title">Mashton Meals</span>
+    </md-toolbar>
+    <router-outlet></router-outlet>
+</md-card>

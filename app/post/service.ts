@@ -20,6 +20,7 @@ export class Poster {
             .toPromise()
             .then(response => {
                 return response.json().map(p => {
+                    if (typeof p.postDate == 'string') p.postDate = new Date(p.postDate)
                     return new Post(p._id,
                                     p.title
                                     , p.type

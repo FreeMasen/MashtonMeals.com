@@ -28,9 +28,7 @@ export class Dashboard implements OnInit {
     ngOnInit(): void {
         this.poster.get()
             .then((posts) => {
-                this.recent = posts.sort((a, b) => {
-                    return a.postDate.getMilliseconds() - b.postDate.getMilliseconds()
-                }).slice(0,9)
+                this.recent = posts.slice(0,9)
             })
             .catch(function(e) {
                 console.log(e)

@@ -9,7 +9,7 @@ export class Post {
     constructor(id: number,
                 title: string = '',
                 type: string = 'recipe',
-                postDate: Date = new Date(),
+                postDate:Date = new Date(),
                 contents: string = '',
                 images: string[] = ['assets/images/test.jpg']
                 ) {

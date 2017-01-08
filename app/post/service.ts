@@ -4,7 +4,6 @@ import { Observable } from 'rxjs'
 import 'rxjs/add/operator/toPromise'
 
 import { Post } from '../models/post'
-import { MockPosts } from './mockPosts'
 
 @Injectable()
 export class Poster {
@@ -20,7 +19,14 @@ export class Poster {
         return this.http.get(path)
             .toPromise()
             .then(response => {
-                return response.json() as Post[]
+                return response.json().map(p => {
+                    return new Post(p._id,
+                                    p.title
+                                    , p.type
+                                    , p.postDate
+                                    , p.contents
+                                    , p.images)
+                })
             })
     }
 }

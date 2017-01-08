@@ -12,9 +12,9 @@
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
-    width: 48%;
+    width: 80%;
     margin: 5px;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .list-title {
@@ -27,15 +27,31 @@
     padding-bottom: 15px;
 }
 
+#sidebar {
+    width: 15%;
+    margin: 5px;
+    background-color: grey;
+}
+
 .post-preview {
-    width: 40%;
-    margin: 2px;
+    width: 28%;
+    margin-top: 2px;
 }
+/*
+.post-preview .snippet-image {
+    margin: auto;
+    margin-bottom: 5px;
+}*/
 
-.recipe {
-
-}
-
-.review {
-
+#selected-post {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 25px;
+    margin-bottom: 0;
+    width: 95%;
+    min-width: 200px;
+    height: 97.5%;
 }

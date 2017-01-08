@@ -14,8 +14,10 @@ import { Post } from '../models/post'
 })
 export class Dashboard implements OnInit { 
     message: string 
-    recipes: Post[] = []
-    reviews: Post[] = []
+    recent: Post[] = []
+    selectedPost: Post
+    displaySelected = false
+    headerImage = 'assets/images/avatar.jpg'
     constructor(
         private router: Router,
         private poster: Poster
@@ -26,16 +28,20 @@ export class Dashboard implements OnInit {
     ngOnInit(): void {
         this.poster.get()
             .then((posts) => {
-                posts.forEach(post => {
-                    if (post.type == 'recipe') {
-                        this.recipes.push(post)
-                    } else {
-                        this.reviews.push(post)
-                    }
-                })
+                this.recent = posts.sort((a, b) => {
+                    return a.postDate.getMilliseconds() - b.postDate.getMilliseconds()
+                }).slice(0,9)
             })
             .catch(function(e) {
                 console.log(e)
             })
+    }
+    selectPost(id) {
+        this.selectedPost = this.recent[id]
+        this.displaySelected = true
+    }
+
+    dismissPost() {
+        this.displaySelected = false
     }
 }

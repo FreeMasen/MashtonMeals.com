@@ -4,19 +4,25 @@
 <div id="dashboard-content">
     <md-card class="recipes post-list">
         <md-card-title class="list-title">
-            Recipes
+            Recent Posts
         </md-card-title>
-        <md-card *ngFor="let recipe of recipes" class="post-preview recipe">
-            <md-card-title class="post-title">
-                {{ recipe.title }}
-            </md-card-title>
-            <img md-card-image src="{{ recipe.images[0] }}">
+        <md-card *ngFor="let post of recent" class="post-preview recipe" (click)="selectPost(recipe._id)">
+            <md-card-header>
+                <img md-card-avatar src="{{headerImage}}">
+                <md-card-title>
+                {{ post.title }}
+                </md-card-title>
+                <md-card-subtitle>
+                    {{ post.postDate.toLocaleString() }}
+                </md-card-subtitle>
+            </md-card-header>
+            <img md-card-image class="snippet-image" src="{{ post.images[0] }}">
             <md-card-content class="post-snippet">
-                {{ recipe.snippet }}
+                {{ post.snippet }}
             </md-card-content>
         </md-card>
     </md-card>
-    <md-card class="reviews post-list">
+    <!--<md-card class="reviews post-list">
         <md-card-title class="list-title">
             Reviews
         </md-card-title>
@@ -29,5 +35,28 @@
                 {{ review.snippet }}
             </md-card-content>
         </md-card>
+    </md-card>-->
+    <div id="sidebar">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- MashtonMeals2 -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3645196637290477"
+            data-ad-slot="3782561141"
+            data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    <md-card id="selected-post" *ngIf="displaySelected">
+        <button md-button id="dismiss-post" (click)="dismissPost()">X</button>
+        <md-card-title id="selected-post-title">
+            {{selectedPost.title}}
+        </md-card-title>
+        <img md-card-image src="{{ selectedPost.images[0]}}">
+        <md-card-content id="selected-post-content">
+            <div id="selected-post-banner-ad"></div>
+            {{ selectedPost.contents}}
+        </md-card-content>
     </md-card>
 </div>

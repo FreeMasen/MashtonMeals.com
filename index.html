@@ -19,7 +19,9 @@
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
     <script>
-      System.import('app').catch(function(err){ console.error(err); });
+      System.import('app').catch(function(err){ 
+        console.log('System.import Error')
+        console.error(err.message); });
     </script>
   </head>
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'my-app',
@@ -7,17 +8,20 @@ import { Component } from '@angular/core'
 })
 export class AppComponent { 
     menuVis: boolean = false
+    constructor(private router: Router) {}
     menuItems = [
         {path:"/recipes",
         text: "Recipes"},
         {path: "/reviews",
-        text: "Reviews"}
+        text: "Reviews"},
+        {path: "/entry",
+        text: "New Post"}
     ]
     toggleMenu() {
         this.menuVis = !this.menuVis
     }
 
     goToItem(path) {
-        console.log(path)
+        this.router.navigate([path])
     }
 }

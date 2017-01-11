@@ -6,7 +6,7 @@ export class Post {
     contents: string 
     images: string[] 
     snippet: string
-    constructor(id: number,
+    constructor(id: number = -1,
                 title: string = '',
                 type: string = 'recipe',
                 postDate:Date = new Date(),

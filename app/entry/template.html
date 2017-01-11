@@ -1,0 +1,27 @@
+<md-card id="entry">
+    <h1>New Post</h1>
+    {{diagnostic}}
+    <form id="new-post">
+        <md-input-container id="post-title" class="form-element">
+            <input type="text" md-input placeholder="title" id="title" required [(ngModel)]="pendingPost.title" name="title" />
+        </md-input-container>
+        <md-input-container id="post-content" class="form-element">
+            <textarea rows="30" cols="15" md-input placeholder="post content" id="content" [(ngModel)]="pendingPost.contents" name="content" required >
+            </textarea>
+        </md-input-container>
+        <md-radio-group [(ngModel)]="pendingPost.type" name="type" class="form-element" id="type">
+            <md-radio-button value="recipe">Recipe</md-radio-button>
+            <md-radio-button value="review">Review</md-radio-button>
+        </md-radio-group>
+        <div class="form-element">
+            <div id="images">
+                <img *ngFor="let src of pendingPost.images" src="{{src}}" class="image"/>
+            </div>
+            <button md-raised-button>Upload Photo</button>
+        </div>
+        <div class="form-element" id="buttons">
+            <button md-raised-button id="submit" color="primary">Submit</button>
+            <button md-raised-button id="cancel" color="warning">Cancel</button>
+        </div>
+    </form>
+</md-card>

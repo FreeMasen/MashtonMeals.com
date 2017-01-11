@@ -4,7 +4,7 @@ import { Router } from '@angular/router'
 
 import { Observable } from 'rxjs'
 
-import { Poster } from '../post/service'
+import { Poster } from '../poster/service'
 import { Post } from '../models/post'
 
 @Component({

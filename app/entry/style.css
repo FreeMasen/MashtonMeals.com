@@ -1,0 +1,38 @@
+#entry {
+
+}
+#new-post {
+    display: flex;
+    flex-flow: column;
+}
+
+.form-element {
+    width: 100%;
+    margin: 2px;
+}
+
+#post-title {
+
+} 
+#title {
+
+}
+#post-content {
+}
+#content {
+    height: 100%;
+    overflow: auto;
+}
+
+#images {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.image {
+    height: 100px;
+}
+#buttons {
+
+}

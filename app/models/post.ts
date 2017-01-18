@@ -11,7 +11,7 @@ export class Post {
                 type: string = 'recipe',
                 postDate:Date = new Date(),
                 contents: string = '',
-                images: string[] = ['assets/images/test.jpg']
+                images: string[] = []
                 ) {
         this._id = id
         this.title = title

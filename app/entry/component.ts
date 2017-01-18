@@ -14,18 +14,27 @@ import { Post } from '../models/post'
     styleUrls: ['app/entry/style.css']
 })
 export class Entry implements OnInit {
-
+    message = ''
+    constructor(private poster: Poster) {}
     pendingPost = new Post()
-    postTypes = ["Recipe", "Review"]
+    files: File[] = []
+
 
     ngOnInit(): void {
-
     }
 
-    uploadPhotos() {
-        
+    updateMessage(text: string) {
+        if (!text) return this.message = ''
+        this.message = text
+        setTimeout(this.updateMessage, 5000)
     }
 
-      get diagnostic() { return JSON.stringify(this.pendingPost); }
+    newPost() {
+
+    }
+    
+    addImages(files: File[]) {
+        this.poster.uploadImages(files)
+    }
 
 }

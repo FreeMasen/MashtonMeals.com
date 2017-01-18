@@ -1,7 +1,12 @@
 const express = require('express')
+const multer = require('multer')
+const bodyParser = require('body-parser')
+const images = multer({dest: 'assets/images/'})
+// const jimp = require('jimp')
+const fs = require('fs')
 
 const app = express()
-
+app.use(bodyParser.raw({limit: '5mb'}))
 var posts = generatePosts()
 
 function generatePosts() {
@@ -35,10 +40,20 @@ function generatePosts() {
 app.use(express.static(`${__dirname}`))
 
 app.get('/posts/:type', (req, res) => {
-  var sorted = 
+  
   res.send(JSON.stringify(posts.sort((a, b) => {
     return a.postDate / 1000 - b.postDate / 1000
   })))
+})
+
+app.post('/new/image/:filename', (req, res) => {
+  console.log('request to /new/image')
+  let filename = req.params.filename
+  if (!filename || filename.length < 5) return res.status(407).send('Filename not provided')
+  var path = `assets/images/${req.params.filename}`
+  fs.writeFile(path,req.body,(err) => {
+    res.send(path)
+  })
 })
 
 

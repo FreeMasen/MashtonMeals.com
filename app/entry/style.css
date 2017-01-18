@@ -36,3 +36,24 @@
 #buttons {
 
 }
+
+.warning-message {
+    background-color: pink;
+    color: red;
+    border-radius: 2px;
+    padding-left: 10px;
+}
+
+.drop-zone {
+    border: dotted 8pt darkgray;
+    background: lightblue;
+}
+
+.drop-zone.file-present {
+    background: darkslategray;
+}
+
+.pending:before {
+    content: "*";
+    color: blue;
+}

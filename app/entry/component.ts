@@ -34,7 +34,26 @@ export class Entry implements OnInit {
     }
     
     addImages(files: File[]) {
-        this.poster.uploadImages(files)
+        var self = this
+        for (var i=0;i<files.length;i++) {
+            self.poster.uploadImage(files[i])
+                .then(response => {
+                    console.log(response.json())
+                    this.pendingPost.images.push(response.json().path)
+                    
+                }).catch(message => {
+                    self.updateMessage(message)
+                })
+        }
+    }
+
+    get status() {
+        return this.poster.queue.map(element => {
+            return {
+                name: element.filename,
+                status: element.status
+            }
+        })
     }
 
 }

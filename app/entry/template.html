@@ -1,6 +1,9 @@
 <md-card id="entry">
     <h1>New Post</h1>
     <form id="new-post">
+        <div *ngIf="message.length > 0" id="message">
+            {{message}}
+        </div>
         <md-input-container id="post-title" class="form-element">
             <input type="text" md-input placeholder="title" id="title" required [(ngModel)]="pendingPost.title" name="title" #name="ngModel" />
         </md-input-container>
@@ -17,13 +20,16 @@
         </md-radio-group>
         <div class="form-element">
             <div id="images">
-                <img *ngFor="let src of pendingPost.images" src="{{src}}" class="image"/>
-                <img *ngFor="let pending of filePahts" src="{{pending}}" class="image pending" />
+                <img *ngFor="let src of pendingPost.images" [src]="src" class="image"/>
+                <img *ngFor="let pending of filePahts" [src]="pending" class="image pending" />
             </div>
         </div>
         <div id="upload">
-            <input type="file" [(ngModel)]="filePaths" name="filePahts" (change)="addImages($event.srcElement.files)"/>
+            <input type="file" id="filePahts" (change)="addImages($event.srcElement.files)" multiple/>
             <button md-raised-button id="upload-button" >Upload</button>
+        </div>
+        <div *ngFor="let image of status">
+            {{image.name}}: {{image.status}}
         </div>
         <div class="form-element" id="buttons">
             <button md-raised-button id="submit" color="primary">Submit</button>

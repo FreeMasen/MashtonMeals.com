@@ -11,7 +11,7 @@ var posts = generatePosts()
 
 function generatePosts() {
     var ret = []
-    var lorem = `On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.`
+    var lorem = [`On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.`]
     
     var dateCounter = 0
     for (i=0;i<10;i++) {
@@ -52,10 +52,16 @@ app.post('/new/image/:filename', (req, res) => {
   if (!filename || filename.length < 5) return res.status(407).send('Filename not provided')
   var path = `assets/images/${req.params.filename}`
   fs.writeFile(path,req.body,(err) => {
-    res.send(path)
+    responseObj = {
+      path: path
+    }
+    res.send(JSON.stringify(responseObj))
   })
 })
 
+app.post('/new/post/', (req, res) => {
+
+})
 
 
 app.get('*', (req, res) => {

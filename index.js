@@ -41,8 +41,17 @@ function generatePosts() {
 app.use(express.static(`${__dirname}`))
 
 app.get('/posts/:type', (req, res) => {
+  var toSend
+  if (req.params && req.params.type) {
+    var type = req.params.type
+    toSend = posts.filter(post => {
+      return type == post.type
+    })
+  } else {
+    toSend = posts
+  }
   
-  res.send(JSON.stringify(posts.sort((a, b) => {
+  res.send(JSON.stringify(toSend.sort((a, b) => {
     return a.postDate / 1000 - b.postDate / 1000
   })))
 })

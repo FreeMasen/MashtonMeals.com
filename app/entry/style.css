@@ -32,19 +32,15 @@
 
 .image {
     height: 100px;
+    margin-right: 5px;
 }
 #buttons {
 
 }
 
 .warning-message {
-    background-color: pink;
-    color: red;
+    background-color: darkred;
+    color: pink;
     border-radius: 2px;
     padding-left: 10px;
-}
-
-.pending:before {
-    content: "*";
-    color: blue;
 }

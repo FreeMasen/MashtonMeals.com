@@ -5,7 +5,6 @@ export class Post {
     postDate: Date
     contents: string[]
     images: string[] 
-    snippet: string
     constructor(id: number = -1,
                 title: string = '',
                 type: string = 'recipe',
@@ -19,7 +18,11 @@ export class Post {
         this.postDate = postDate
         this.contents = contents
         this.images = images
-        var trimmed = contents[0].substr(0,300) || ''
-        this.snippet = trimmed.substring(0, trimmed.lastIndexOf(' ')) + '...'
+        
+    }
+
+    get snippet(): string {
+        var trimmed = this.contents[0].substr(0,300) || ''
+        return trimmed.substring(0, trimmed.lastIndexOf(' ')) + '...'
     }
 }

@@ -40,20 +40,9 @@ export class Entry implements OnInit {
                 .then(response => {
                     console.log(response.json())
                     this.pendingPost.images.push(response.json().path)
-                    
                 }).catch(message => {
                     self.updateMessage(message)
                 })
         }
     }
-
-    get status() {
-        return this.poster.queue.map(element => {
-            return {
-                name: element.filename,
-                status: element.status
-            }
-        })
-    }
-
 }

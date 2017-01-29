@@ -7,7 +7,7 @@ const poster = require('./src/poster.js')
 const app = express()
 
 app.use(bodyParser.raw({limit: '5mb'}))
-app.use(express.static(`${__dirname}`))
+app.use(express.static(__dirname))
 
 app.get('/posts/:type/:page', (req, res) => {
   poster.getPosts(req.params.type, req.params.page ,(err, posts) => {

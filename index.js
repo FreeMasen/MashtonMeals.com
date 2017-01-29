@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const images = multer({dest: 'assets/images/'})
 // const jimp = require('jimp')
 const fs = require('fs')
+const poster = require('./src/poster.js')
 
 const app = express()
 app.use(bodyParser.raw({limit: '5mb'}))
@@ -46,7 +47,7 @@ app.get('/posts/:type', (req, res) => {
   })))
 })
 
-app.post('/new/image/:filename', (req, res) => {
+app.post('/image/:filename', (req, res) => {
   console.log('request to /new/image')
   let filename = req.params.filename
   if (!filename || filename.length < 5) return res.status(407).send('Filename not provided')
@@ -59,8 +60,18 @@ app.post('/new/image/:filename', (req, res) => {
   })
 })
 
-app.post('/new/post/', (req, res) => {
+app.post('/post', (req, res) => {
+  poster.newPost(req.body, (err, post) => {
+    if (err) return res.status(500).send(err.message)
+    res.send(JSON.stringify(post))
+  })
+})
 
+app.put('/post', (req, res) => {
+  poster.updatePost(req.body, (err, post) => {
+    if (err) return res.status(500).send(err.message)
+    res.send(JSON.stringify(post))
+  })
 })
 
 

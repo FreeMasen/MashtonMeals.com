@@ -12,6 +12,7 @@ import { Dashboard } from './dashboard/component'
 import { Entry } from './entry/component'
 
 import { Poster } from './poster/service'
+import { Auth } from './auth/service'
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { Poster } from './poster/service'
         FormsModule
     ],
     providers: [
-        Poster
+        Poster,
+        Auth
     ],
     declarations: [
         AppComponent,

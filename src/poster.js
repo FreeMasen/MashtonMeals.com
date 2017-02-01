@@ -36,7 +36,7 @@ Poster.prototype.getPosts = function(type, page, cb) {
 }
 
 Poster.prototype.newImage = function(image, cb) {
-    var path = `assets/images/${req.params.filename}`
+    var path = `assets/images/${getBytes(8).toString('hex')}`
     fs.writeFile(path, image, err => {
         if (err) return cb(err)
         cb(null, {path: path})

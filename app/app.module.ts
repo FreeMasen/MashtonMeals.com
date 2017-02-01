@@ -10,6 +10,7 @@ import { Router } from './router/module'
 
 import { Dashboard } from './dashboard/component'
 import { Entry } from './entry/component'
+import { Login } from './login/component'
 
 import { Poster } from './poster/service'
 import { Auth } from './auth/service'
@@ -29,7 +30,8 @@ import { Auth } from './auth/service'
     declarations: [
         AppComponent,
         Dashboard,
-        Entry
+        Entry,
+        Login
     ],
     bootstrap: [
         AppComponent

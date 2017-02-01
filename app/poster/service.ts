@@ -14,13 +14,14 @@ export class Poster {
     })
     constructor(private http: Http) {}
 
-    get(type: string = undefined): Promise<Post[]> {
+    get(type: string = undefined, page: number = 0): Promise<Post[]> {
         var path
         if (type) {
-            path = `/posts/${type}`
+            path = `/posts/${type}/`
         } else {
-            path = '/posts/all'
+            path = '/posts/all/'
         }
+        path += page
         return this.http.get(path)
             .toPromise()
             .then(response => {
@@ -45,19 +46,19 @@ export class Poster {
         return this.http.request(new Request(
                         new RequestOptions({
                         method: "POST",
-                        url: `/image/${image.name}`,
+                        url: `/image`,
                         headers: this.imageHeaders,
                         body: image
                     }
                 )
             )
         ).toPromise()
-        .then(response => {
-            return response
-        })
-        .catch(error => {
-            console.error(error.message)
-        })
+        // .then(response => {
+        //     return response
+        // })
+        // .catch(error => {
+        //     console.error(error.message)
+        // })
     }
 
     post(post: Post) {

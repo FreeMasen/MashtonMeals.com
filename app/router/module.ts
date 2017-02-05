@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { Dashboard } from '../dashboard/component'
 import { Entry } from '../entry/component'
+import { Login } from '../login/component'
 
 const routes: Routes = [
     {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
     {path: 'dashboard', component: Dashboard},
-    {path: 'entry', component: Entry}
+    {path: 'entry', component: Entry},
+    {path: 'login', component: Login}
 ]
 
 @NgModule({

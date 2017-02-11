@@ -1,6 +1,3 @@
-<h1 id="message" *ngIf="message.length > 0">
-    {{message}}
-</h1>
 <div id="dashboard-content">
     <md-card class="recipes post-list">
         <md-card-title class="list-title">
@@ -23,16 +20,15 @@
         </md-card>
     </md-card>
     <div id="sidebar">
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- MashtonMeals2 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-3645196637290477"
-     data-ad-slot="3782561141"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+        <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3645196637290477"
+            data-ad-slot="3782561141"
+            data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>-->
     </div>
     <md-card id="selected-post" *ngIf="displaySelected">
         <button md-button id="dismiss-post" (click)="dismissPost()">X</button>

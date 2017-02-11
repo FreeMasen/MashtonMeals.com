@@ -46,6 +46,8 @@
 }
 
 #message {
-    height: 25px;
-    
+    color: pink;
+    font-size: 20pt;
+    width: 100%;
+    text-align: center
 }

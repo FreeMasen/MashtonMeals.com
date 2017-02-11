@@ -1,0 +1,26 @@
+<md-card id="list"> 
+    <md-card-title>
+        {{ type }}
+    </md-card-title>
+    <md-card-content>
+        <md-card class="post" *ngFor="let post of posts">
+            <md-card-header>
+                <md-card-title class="post-title">
+                    {{ post.title }}
+                </md-card-title>
+                <md-card-subtitle>
+                    {{ post.postDate.toLocaleDateString() }}
+                </md-card-subtitle>
+            </md-card-header>
+            <img md-card-image class="snippet-image" src="{{ post.images[0] }}">
+            <md-card-content class="post-snippet">
+                {{ post.snippet }}
+            </md-card-content>
+        </md-card>
+    </md-card-content> 
+    <div id="page-bar">
+        <button md-raised-button class="bar-element"><</button>
+        <span bar-element>{{ page }}</span>
+        <button md-raised-button bar-element>></button>
+    </div>
+</md-card>

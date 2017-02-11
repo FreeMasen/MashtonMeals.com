@@ -6,6 +6,8 @@ import { Form } from '@angular/forms'
 import { Observable } from 'rxjs'
 
 import { Poster } from '../poster/service'
+import { Messenger } from '../messenger/service'
+
 import { Post } from '../models/post'
 
 @Component({
@@ -14,19 +16,13 @@ import { Post } from '../models/post'
     styleUrls: ['app/entry/style.css']
 })
 export class Entry implements OnInit {
-    message = ''
-    constructor(private poster: Poster) {}
+    constructor(private poster: Poster,
+                private messenger: Messenger) {}
     pendingPost = new Post()
     files: File[] = []
 
 
     ngOnInit(): void {
-    }
-
-    updateMessage(text: string) {
-        if (!text) return this.message = ''
-        this.message = text
-        setTimeout(this.updateMessage, 5000)
     }
 
     newPost() {
@@ -41,7 +37,7 @@ export class Entry implements OnInit {
                     console.log(response.json())
                     this.pendingPost.images.push(response.json().path)
                 }).catch(message => {
-                    self.updateMessage(message)
+                    self.messenger.display(message)
                 })
         }
     }

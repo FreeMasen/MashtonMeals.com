@@ -27,7 +27,6 @@ Poster.prototype.getPosts = function(type, page, cb) {
         q.type = type
     }
     if (typeof page == 'function') page = 0
-    console.log(q)
     db.posts.find(q).limit(10).skip(page * 10, (err, docs) => {
         if (err) return cb(err)
         cb(null, docs)

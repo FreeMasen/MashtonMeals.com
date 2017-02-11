@@ -3,21 +3,23 @@
         <md-card-title class="list-title">
             Recent Posts
         </md-card-title>
-        <md-card *ngFor="let post of recent" class="post-preview recipe" (click)="selectPost(recipe._id)">
-            <md-card-header>
-                <img md-card-avatar src="{{headerImage}}">
-                <md-card-title>
-                {{ post.title }}
-                </md-card-title>
-                <md-card-subtitle>
-                    {{ post.postDate.toLocaleDateString() }}
-                </md-card-subtitle>
-            </md-card-header>
-            <img md-card-image class="snippet-image" src="{{ post.images[0] }}">
-            <md-card-content class="post-snippet">
-                {{ post.snippet }}
-            </md-card-content>
-        </md-card>
+        <md-card-content id="dashboard-posts">
+            <md-card *ngFor="let post of recent" class="post-preview recipe" (click)="selectPost(recipe._id)">
+                <md-card-header>
+                    <img md-card-avatar src="{{headerImage}}">
+                    <md-card-title>
+                    {{ post.title }}
+                    </md-card-title>
+                    <md-card-subtitle>
+                        {{ post.postDate.toLocaleDateString() }}
+                    </md-card-subtitle>
+                </md-card-header>
+                <img md-card-image class="snippet-image" src="{{ post.images[0] }}">
+                <md-card-content class="post-snippet">
+                    {{ post.snippet }}
+                </md-card-content>
+            </md-card>
+        </md-card-content>
         <md-card-footer id="nav-buttons">
             <button md-raised-button color="primary" [disabled]="pageNumber < 1" (click)="paginate(true)"><</button>
             <button md-raised-button color="accent">{{pageNumber + 1}}</button>

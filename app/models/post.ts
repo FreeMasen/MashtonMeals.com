@@ -18,7 +18,6 @@ export class Post {
         this.postDate = postDate
         this.contents = contents
         this.images = images
-        
     }
 
     get snippet(): string {

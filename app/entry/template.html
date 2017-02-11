@@ -1,9 +1,6 @@
 <md-card id="entry">
     <h1>New Post</h1>
     <form id="new-post">
-        <div *ngIf="message.length > 0" id="message">
-            {{message}}
-        </div>
         <md-input-container id="post-title" class="form-element">
             <input type="text" md-input placeholder="title" id="title" required [(ngModel)]="pendingPost.title" name="title" #name="ngModel" />
         </md-input-container>

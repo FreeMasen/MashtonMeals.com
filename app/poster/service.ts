@@ -14,14 +14,9 @@ export class Poster {
     })
     constructor(private http: Http) {}
 
-    get(type: string = undefined, page: number = 0): Promise<Post[]> {
-        var path
-        if (type) {
-            path = `/posts/${type}/`
-        } else {
-            path = '/posts/all/'
-        }
-        path += page
+    get(type: string = 'all', page: number = 0): Promise<Post[]> {
+        var path = `/posts/${type}/${page}`
+        console.log(path)
         return this.http.get(path)
             .toPromise()
             .then(response => {
@@ -53,12 +48,6 @@ export class Poster {
                 )
             )
         ).toPromise()
-        // .then(response => {
-        //     return response
-        // })
-        // .catch(error => {
-        //     console.error(error.message)
-        // })
     }
 
     post(post: Post) {

@@ -1,0 +1,12 @@
+<md-card>
+    <form id="login">
+        <md-input-container class="form-element">
+            <input type="text" md-input placeholder="username" name="username" [(ngModel)]="username"/>
+        </md-input-container>
+        <md-input-container class="form-element">
+            <input type="password" md-input placeholder="password" name="password" [(ngModel)]="password"/>
+        </md-input-container>
+        <button md-raised-button (click)="login()">Submit</button>
+        <button md-raised-button (click)="goBack()">Cancel</button>
+    </form>
+</md-card>

@@ -10,9 +10,10 @@
         </button>
         <span id="title" (click)="goToItem(['dashboard'])">Mashton Meals</span>
         <button id="logout" md-raised-button color="primary" (click)="logout()"><span>Logout</span></button>
+        <md-toolbar-row id="message-container" *ngIf="message.length > 0">
+            <span id="message">{{message}}</span>
+        </md-toolbar-row>
     </md-toolbar>
-    <md-toolbar-row id="message" color="warn" *ngIf="message.length > 0">
-        <span>{{message}}</span>
-    </md-toolbar-row>
+
     <router-outlet></router-outlet>
 </md-card>

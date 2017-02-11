@@ -11,9 +11,11 @@ import { Router } from './router/module'
 import { Dashboard } from './dashboard/component'
 import { Entry } from './entry/component'
 import { Login } from './login/component'
+import { List } from './list/component'
 
 import { Poster } from './poster/service'
 import { Auth } from './auth/service'
+import { Messenger } from './messenger/service'
 
 @NgModule({
     imports: [
@@ -25,13 +27,15 @@ import { Auth } from './auth/service'
     ],
     providers: [
         Poster,
-        Auth
+        Auth,
+        Messenger
     ],
     declarations: [
         AppComponent,
         Dashboard,
         Entry,
-        Login
+        Login,
+        List
     ],
     bootstrap: [
         AppComponent

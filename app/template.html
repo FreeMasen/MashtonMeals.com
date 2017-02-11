@@ -8,7 +8,11 @@
         <button md-button id="menu-button" (click)="toggleMenu()" >
             <md-icon>menu</md-icon>
         </button>
-        <span id="title">Mashton Meals</span>
+        <span id="title" (click)="goToItem(['dashboard'])">Mashton Meals</span>
+        <button id="logout" md-raised-button color="primary" (click)="logout()"><span>Logout</span></button>
     </md-toolbar>
+    <md-toolbar-row id="message" color="warn" *ngIf="message.length > 0">
+        <span>{{message}}</span>
+    </md-toolbar-row>
     <router-outlet></router-outlet>
 </md-card>

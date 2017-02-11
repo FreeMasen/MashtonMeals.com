@@ -37,11 +37,6 @@
     width: 28%;
     margin-top: 2px;
 }
-/*
-.post-preview .snippet-image {
-    margin: auto;
-    margin-bottom: 5px;
-}*/
 
 #selected-post {
     position: absolute;
@@ -54,4 +49,8 @@
     width: 95%;
     min-width: 200px;
     height: 97.5%;
+}
+
+#nav-buttons {
+    margin-top: 10px;
 }

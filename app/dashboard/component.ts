@@ -16,7 +16,6 @@ import { Post } from '../models/post'
 })
 export class Dashboard implements OnInit { 
     recent: Post[] = []
-    selectedPost: Post
     pageNumber: number = -1
     displaySelected = false
     headerImage = 'assets/images/avatar.jpg'
@@ -31,8 +30,7 @@ export class Dashboard implements OnInit {
             
     }
     selectPost(id) {
-        this.selectedPost = this.recent[id]
-        this.displaySelected = true
+
     }
 
     dismissPost() {

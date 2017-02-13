@@ -58,4 +58,8 @@ export class Poster {
                 return response.text()
             })
     }
+
+    breakContent(content: string): Array<string> {
+        return content.split("##")
+    }
 }

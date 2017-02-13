@@ -6,6 +6,7 @@ import { Form } from '@angular/forms'
 import { Observable } from 'rxjs'
 
 import { Poster } from '../poster/service'
+import { Auth } from '../auth/service'
 import { Messenger } from '../messenger/service'
 
 import { Post } from '../models/post'
@@ -16,17 +17,28 @@ import { Post } from '../models/post'
     styleUrls: ['app/entry/style.css']
 })
 export class Entry implements OnInit {
-    constructor(private poster: Poster,
-                private messenger: Messenger) {}
     pendingPost = new Post()
     files: File[] = []
-
+    constructor(private poster: Poster,
+                private auth: Auth,
+                private messenger: Messenger,
+                private router: Router) {}
 
     ngOnInit(): void {
+        this.auth.checkUser()
+            .then(result => {
+                if (!result) {
+                    this.messenger.display('Unauthoried page, re-routing to dahsboard')
+                    this.router.navigate(['dashboard'])
+                }
+            })
     }
 
     newPost() {
-
+        this.poster.post(this.pendingPost)
+            .then(response => {
+                this.messenger.display(response)
+            })
     }
     
     addImages(files: File[]) {

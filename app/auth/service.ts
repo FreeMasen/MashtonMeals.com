@@ -31,10 +31,11 @@ export class Auth {
     logout(): Promise<string> {
         this.user = null
         return this.http
-            .post('/logout',{})
+            .delete('/logout',{})
             .toPromise()
             .then(response => {
-                return response.json().message
+                if (response.json().loggedOut)
+                return "Successfully logged out"
             })
     }
 

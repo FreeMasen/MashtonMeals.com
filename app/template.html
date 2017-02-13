@@ -9,7 +9,7 @@
             <md-icon>menu</md-icon>
         </button>
         <span id="title" (click)="goToItem(['dashboard'])">Mashton Meals</span>
-        <button id="logout" md-raised-button color="primary" (click)="logout()"><span>Logout</span></button>
+        <button id="logout" md-raised-button color="primary" (click)="logout()" *ngIf="logoutVis"><span>Logout</span></button>
         <md-toolbar-row id="message-container" *ngIf="message.length > 0">
             <span id="message">{{message}}</span>
         </md-toolbar-row>

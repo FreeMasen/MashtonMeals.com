@@ -8,7 +8,7 @@
             Title is required.
         </div>
         <md-input-container id="post-content" class="form-element">
-            <textarea rows="30" cols="15" md-input placeholder="post content" id="content" [(ngModel)]="pendingPost.contents" name="content" required >
+            <textarea rows="30" cols="15" md-input placeholder="post content" id="content" [(ngModel)]="pendingPost.contents[0]" name="content" required >
             </textarea>
         </md-input-container>
         <md-radio-group [(ngModel)]="pendingPost.type" name="type" class="form-element" id="type">

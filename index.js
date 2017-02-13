@@ -35,14 +35,21 @@ app.use(session({
 
 app.get('/posts/:type/:page', (req, res) => {
   poster.getPosts(req.params.type, req.params.page ,(err, posts) => {
-    if (err) res.status(500).send(err.message)
+    if (err) res.status(404).send(err.message)
     res.send(JSON.stringify(posts))
+  })
+})
+
+app.get('/post/:id', (req, res) => {
+  poster.getPost(req.params.id, (err, post) => {
+    if (err) res.status(404).send(err.message)
+    res.send(JSON.stringify(post))
   })
 })
 
 app.get('/auth/user', (req, res) => {
   var status = {}
-  status.loggedIn = req.session.loggedIn 
+  status.loggedIn = req.session.loggedIn === true
   res.send(JSON.stringify(status))
 })
 
@@ -54,25 +61,31 @@ app.post('/image/', (req, res) => {
 })
 
 app.post('/post', (req, res) => {
-  poster.newPost(req.body, (err, post) => {
-    if (err) return res.status(500).send(err.message)
-    res.send(JSON.stringify(post))
+  poster.newPost(req.body, (err) => {
+    if (err) return res.status(404).send(err.message)
+    res.send('Post saved successfully')
   })
 })
 
 app.post('/auth', (req, res) => {
   auth.login(req.body.username, req.body.password, (err, user) => {
-    if (err) return res.status(404).send(err.message)
+    if (err) return res.status(500).send(err.message)
     req.session.loggedIn = true
-    req.session.username = req.body.username
     res.send(JSON.stringify(user))
   })
 })
 
 app.put('/post', (req, res) => {
   poster.updatePost(req.body, (err, post) => {
-    if (err) return res.status(500).send(err.message)
+    if (err) return res.status(404).send(err.message)
     res.send(JSON.stringify(post))
+  })
+})
+
+app.delete('/logout', (req, res) => {
+  auth.logout(req.sessionId, (err) => {
+    if (err) return res.status(404).send(err.message)
+    res.send('{"loggedOut": true}')
   })
 })
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { OnInit } from '@angular/core'
 
+import { Location } from '@angular/common'
 import { Auth } from './auth/service'
 import { Messenger } from './messenger/service'
 
@@ -12,6 +13,7 @@ import { Messenger } from './messenger/service'
 })
 export class AppComponent implements OnInit { 
     menuVis: boolean = false
+    logoutVis: boolean = false
     message: string = ''
     menuItems = [
         {path: ["list","recipes","0"],
@@ -21,9 +23,10 @@ export class AppComponent implements OnInit {
         {path: ["login"],
         text: "Login"}]
 
-    constructor(private router: Router
-                , private auth: Auth
-                , private messenger: Messenger) {}
+    constructor(private router: Router,
+                private location: Location,
+                private auth: Auth, 
+                private messenger: Messenger) {}
 
     ngOnInit(): void {
         this.checkUser()
@@ -38,7 +41,6 @@ export class AppComponent implements OnInit {
     }
 
     goToItem(path) {
-        console.log(path)
         this.router.navigate(path)
         this.menuVis = false
     }
@@ -48,9 +50,11 @@ export class AppComponent implements OnInit {
             .checkUser()
             .then(status => {
                 if (status === true) {
-                    this.menuItems[2] = {path: ["entry"],
-                                         text: "New Post"}
+                    console.log('logged in, replacing menu option')
+                    this.resetMenuItem(2, ["entry"], "New Post")
+                    this.logoutVis = true
                 }
+                console.log(`done checking status: ${status}`)
             }).catch(error => {
                 console.error(error.message)
             })
@@ -60,14 +64,16 @@ export class AppComponent implements OnInit {
         this.auth
             .logout()
             .then(status => {
-                this.displayMessage(status)
+                this.messenger.display(status)
+                this.resetMenuItem(2, ["login"], "Login")
+                this.logoutVis = false
             }).catch(error => {
-                this.displayMessage('Error logging out')
+                this.messenger.display('Error logging out')
             })
     }
 
-    displayMessage(text: string): void {
-        this.message = text;
-        setTimeout(this.displayMessage(''), 5000)
+    resetMenuItem(index, path, text) {
+        this.menuItems[index] = {path: path,
+                                 text: text}
     }
 }

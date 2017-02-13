@@ -67,6 +67,7 @@ export class AppComponent implements OnInit {
                 this.messenger.display(status)
                 this.resetMenuItem(2, ["login"], "Login")
                 this.logoutVis = false
+                this.router.navigate(['dashboard'])
             }).catch(error => {
                 this.messenger.display('Error logging out')
             })

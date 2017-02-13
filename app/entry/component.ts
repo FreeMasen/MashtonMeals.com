@@ -1,5 +1,4 @@
-import { Component } from '@angular/core'
-import { OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Form } from '@angular/forms'
 
@@ -35,6 +34,7 @@ export class Entry implements OnInit {
     }
 
     newPost() {
+        this.pendingPost.contents = this.poster.breakContent(this.pendingPost.contents[0])
         this.poster.post(this.pendingPost)
             .then(response => {
                 this.messenger.display(response)

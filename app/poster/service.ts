@@ -50,12 +50,12 @@ export class Poster {
         ).toPromise()
     }
 
-    post(post: Post) {
+    post(post: Post): Promise<string> {
         return this.http.post(`new/post`,
             post)
             .toPromise()
             .then(response => {
-                return response
+                return response.text()
             })
     }
 }

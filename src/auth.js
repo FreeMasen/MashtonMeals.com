@@ -21,8 +21,11 @@ Auth.prototype.login = function(username, password, cb) {
     })
 }
 
-Auth.prototype.logout = function(username, sessionId) {
-    db.sessions.findAndModify({sessionId: sessionId, username: username})
+Auth.prototype.logout = function(sessionId, cb) {
+    db.sessions.remove({sessionId: sessionId},(err) => {
+        if (err) return cb(err)
+        cb(null)        
+    })
 }
 
 module.exports = new Auth()

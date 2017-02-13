@@ -24,4 +24,15 @@ export class Post {
         var trimmed = this.contents[0].substr(0,300) || ''
         return trimmed.substring(0, trimmed.lastIndexOf(' ')) + '...'
     }
+
+    get preview(): string {
+        var rough = ''
+        for (var i = 0;i < this.contents.length; i++) {
+            rough += this.contents[i]
+            if (rough.length >= 1200) {
+                rough = rough.substring(0, 1200) + '...'
+            }
+        }
+        return rough.substring(0, rough.lastIndexOf(' '))
+    }
 }

@@ -62,4 +62,20 @@ export class Poster {
     breakContent(content: string): Array<string> {
         return content.split("##")
     }
+
+    single(id): Promise<Post> {
+        return this.http.get(`post/${id}`)
+                    .toPromise()
+                    .then(response => {
+                        var post = response.json()
+                        return new Post(
+                                    post._id,
+                                    post.title,
+                                    post.type,
+                                    new Date(post.postDate),
+                                    post.contents,
+                                    post.images
+                        )
+                    })
+    }
 }

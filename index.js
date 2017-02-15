@@ -61,6 +61,7 @@ app.post('/image/', (req, res) => {
 })
 
 app.post('/post', (req, res) => {
+  if (!req.session.loggedIn) return res.status(500).send("Must be logged in to add new posts")
   poster.newPost(req.body, (err) => {
     if (err) return res.status(404).send(err.message)
     res.send('Post saved successfully')

@@ -4,7 +4,7 @@
             Recent Posts
         </md-card-title>
         <md-card-content id="dashboard-posts">
-            <md-card *ngFor="let post of recent" class="post-preview recipe" (click)="selectPost(recipe._id)">
+            <md-card *ngFor="let post of recent" class="post-preview recipe" (click)="selectPost(post._id)">
                 <md-card-header>
                     <img md-card-avatar src="{{headerImage}}">
                     <md-card-title>

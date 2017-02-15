@@ -30,7 +30,7 @@ export class Dashboard implements OnInit {
             
     }
     selectPost(id) {
-
+        this.router.navigate(['single', id])
     }
 
     dismissPost() {

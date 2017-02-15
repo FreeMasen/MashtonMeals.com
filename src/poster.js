@@ -34,7 +34,7 @@ Poster.prototype.getPosts = function(type, page, cb) {
 
 Poster.prototype.getPost = function(id, cb) {
     var q = {
-        _id: id
+        _id: mongo.ObjectId(id)
     }
     db.posts.findOne(q, (err, doc) => {
         if (err) return cb(err)

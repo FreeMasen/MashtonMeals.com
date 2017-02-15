@@ -34,7 +34,6 @@ export class Entry implements OnInit {
     }
 
     newPost() {
-        this.pendingPost.contents = this.poster.breakContent(this.pendingPost.contents[0])
         this.poster.post(this.pendingPost)
             .then(response => {
                 this.messenger.display(response)

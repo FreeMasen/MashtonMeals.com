@@ -1,5 +1,4 @@
 const express = require('express')
-const multer = require('multer')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const session = require('express-session')

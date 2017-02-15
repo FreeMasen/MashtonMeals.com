@@ -1,0 +1,37 @@
+#single-view {
+    margin: 5px;
+}
+
+.selected-post-title {
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+.selected-post-date {
+    font-size: 8pt;
+    font-style: italic;
+}
+
+.selected-post-content {
+    width: 90%;
+    margin: auto;
+}
+
+.section {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+}
+
+.section-image {
+    width: 80%;
+    margin: auto;
+}
+
+.section-content {
+    width: 95%;
+    margin: 10px auto;
+    font-size: 12pt;
+    line-height: 18pt;
+}

@@ -12,6 +12,7 @@ import { Dashboard } from './dashboard/component'
 import { Entry } from './entry/component'
 import { Login } from './login/component'
 import { List } from './list/component'
+import { Single } from './single/component'
 
 import { Poster } from './poster/service'
 import { Auth } from './auth/service'
@@ -35,7 +36,8 @@ import { Messenger } from './messenger/service'
         Dashboard,
         Entry,
         Login,
-        List
+        List,
+        Single
     ],
     bootstrap: [
         AppComponent

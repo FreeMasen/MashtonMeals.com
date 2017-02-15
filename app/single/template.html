@@ -1,0 +1,16 @@
+<md-card id="single-view" *ngIf="selectedPost != undefined">
+    <md-card-header>
+        <md-card-title class="selected-post-title">
+        {{ selectedPost.title }}
+        </md-card-title>
+        <md-card-subtitle class="selected-post-date">
+            {{ dt }}
+        </md-card-subtitle>
+    </md-card-header>
+    <md-card-content class="selected-post-content">
+        <div class="section" *ngFor="let section of selectedPost.contents; let i = index">
+            <img *ngIf="selectedPost.images[i] != undefined" src="{{selectedPost.images[i]}}" class="section-image" />
+            <span class="section-content">{{ section }}</span>
+        </div>
+    </md-card-content>
+</md-card>

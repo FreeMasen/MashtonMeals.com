@@ -65,4 +65,15 @@ Poster.prototype.removePost = function(id, db) {
     })
 }
 
+Poster.prototype.count = function(type, cb) {
+    var q = {}
+    if (type != 'all') {
+        q.type = type
+    }
+    db.posts.count(q, (err, count) => {
+        if (err) return cb(err)
+        cb(null, count)
+    })
+}
+
 module.exports = new Poster()

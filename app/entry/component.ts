@@ -37,6 +37,7 @@ export class Entry implements OnInit {
         this.poster.post(this.pendingPost)
             .then(response => {
                 this.messenger.display(response)
+                this.router.navigate(['dashboard'])
             })
             .catch(error => {
                 this.messenger.display(error.message)

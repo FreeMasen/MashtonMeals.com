@@ -48,6 +48,14 @@ export class Poster {
         ).toPromise()
     }
 
+    getCount(type: string): Promise<number> {
+        return this.http.get(`/count/${type || ''}`)
+            .toPromise()
+            .then(response => {
+                return response.json().count
+            })
+    }
+
     post(post: Post): Promise<string> {
         post.contents = this.breakContent(post.contents[0])
         return this.http.post(`new/post`,
@@ -55,6 +63,8 @@ export class Poster {
             .toPromise()
             .then(response => {
                 return response.text()
+            }).catch(error => {
+                return new Error('Error saving post')
             })
     }
 

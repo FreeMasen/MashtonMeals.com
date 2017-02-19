@@ -38,6 +38,9 @@ export class Entry implements OnInit {
             .then(response => {
                 this.messenger.display(response)
             })
+            .catch(error => {
+                this.messenger.display(error.message)
+            })
     }
     
     addImages(files: File[]) {

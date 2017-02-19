@@ -7,3 +7,4 @@ node_modules/
 !systemjs.config.js
 !/src/*.js
 **.vscode
+assets/images/*

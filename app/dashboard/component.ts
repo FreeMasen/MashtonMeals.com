@@ -19,6 +19,7 @@ export class Dashboard implements OnInit {
     pageNumber: number = -1
     displaySelected = false
     headerImage = 'assets/images/avatar.jpg'
+    postCount = -1
     constructor(
         private router: Router,
         private poster: Poster,
@@ -27,7 +28,6 @@ export class Dashboard implements OnInit {
 
     ngOnInit(): void {
         this.paginate()
-            
     }
     selectPost(id) {
         this.router.navigate(['single', id])
@@ -43,16 +43,24 @@ export class Dashboard implements OnInit {
         }
         this.updatePageNumber(numberOfPages)
         this.poster.get('all', this.pageNumber) 
-        .then((posts) => {
+        .then(posts => {
                 this.recent = posts
             })
             .catch(function(e) {
                 this.messenger.display(e.message || 'Unknow Error getting posts')
+            })
+        this.poster.getCount('all')
+            .then(count => {
+                this.postCount = count
             })
     }
 
     updatePageNumber(pages: number): void {
         this.pageNumber += pages
         if (this.pageNumber < 0) this.pageNumber = 0
+    }
+
+    get lastPage(): boolean {
+        return this.pageNumber * 9 == this.postCount
     }
 }

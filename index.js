@@ -52,6 +52,13 @@ app.get('/auth/user', (req, res) => {
   res.send(JSON.stringify(status))
 })
 
+app.get('/count/:type', (req, res) => {
+  poster.count(req.params.type, (err, count) => {
+    if (err) return res.status(404).send(`Unable to find count for ${req.params.type}`)
+    res.send(JSON.stringify({count: count}))
+  })
+})
+
 app.post('/image/', (req, res) => {
   poster.newImage(req.body, (err, response) => {
     if (err) res.status(500).send(err.message)

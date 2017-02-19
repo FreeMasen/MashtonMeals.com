@@ -21,11 +21,12 @@
             </md-card>
         </md-card-content>
         <md-card-footer id="nav-buttons">
-            <button md-raised-button color="primary" [disabled]="pageNumber < 1" (click)="paginate(true)"><</button>
-            <button md-raised-button color="accent">{{pageNumber + 1}}</button>
-            <button md-raised-button color="primary" (click)="paginate()">></button>
+            <button class="nav-button" md-raised-button color="primary" [disabled]="pageNumber < 1" (click)="paginate(true)"><</button>
+            <button class="nav-button" md-raised-button color="accent">{{pageNumber + 1}}</button>
+            <button class="nav-button" md-raised-button color="primary" (click)="paginate()">></button>
         </md-card-footer>
     </md-card>
+
     <div id="sidebar">
         <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <ins class="adsbygoogle"

@@ -7,6 +7,7 @@ function Poster() {
 
 }
 Poster.prototype.newPost = function(post, cb) {
+    post._id = undefined
     db.posts.save(post, (err, doc) => {
         if (err) return cb(err)
         cb(null)
@@ -26,7 +27,7 @@ Poster.prototype.getPosts = function(type, page, cb) {
         q.type = type
     }
     if (typeof page == 'function') page = 0
-    db.posts.find(q).limit(9).skip(page * 9, (err, docs) => {
+    db.posts.find(q).sort({postDate: 1}).limit(9).skip(page * 9, (err, docs) => {
         if (err) return cb(err)
         cb(null, docs)
     })

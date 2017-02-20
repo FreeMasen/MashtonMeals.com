@@ -58,7 +58,7 @@ export class Poster {
 
     post(post: Post): Promise<string> {
         post.contents = this.breakContent(post.contents[0])
-        return this.http.post(`new/post`,
+        return this.http.post(`/post`,
             post)
             .toPromise()
             .then(response => {

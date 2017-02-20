@@ -18,7 +18,7 @@ store.on('error', err => {
   console.log(err.message)
 })
 
-app.use(bodyParser.raw({limit: '5mb'}))
+app.use(bodyParser.raw({limit: '15mb'}))
 app.use(bodyParser.json())
 app.use(express.static(__dirname))
 app.use(morgan('dev'))

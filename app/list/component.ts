@@ -24,7 +24,6 @@ export class List implements OnInit {
 
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
-            console.log(params)
             this.type = params['type']
             this.page = +params['page']
             this.poster.get(this.type, this.page)

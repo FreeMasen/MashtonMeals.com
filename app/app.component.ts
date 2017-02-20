@@ -50,11 +50,9 @@ export class AppComponent implements OnInit {
             .checkUser()
             .then(status => {
                 if (status === true) {
-                    console.log('logged in, replacing menu option')
                     this.resetMenuItem(2, ["entry"], "New Post")
                     this.logoutVis = true
                 }
-                console.log(`done checking status: ${status}`)
             }).catch(error => {
                 console.error(error.message)
             })

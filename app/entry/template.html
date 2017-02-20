@@ -20,11 +20,10 @@
                 <div class="image-container" *ngFor="let src of pendingPost.images;let i = index">
                     <img [src]="src" class="image"/>
                     <div class="image-desc">
-                        <span>{{ _imageOptions[i] }}
-                            <button md-raised-button color="primary" (click)="toggleVisable(i)">
-                                <md-icon>expand_more</md-icon>
-                            </button>
-                        </span>
+                        <span>{{ _imageOptions[i] }}</span>
+                        <button md-raised-button color="primary" (click)="toggleVisable(i)" class="dropdown-button">
+                            <md-icon >expand_more</md-icon>
+                        </button>
                     </div>
                     <div class="image-dropdown" *ngIf="isVisable(i)">
                         <span class="dropdown-option" *ngFor="let option of imageOptions(i);" (click)="chooseOption(i, option)">{{ option }}</span>
@@ -34,7 +33,7 @@
         </div>
         <div id="upload">
             <input type="file" id="filePahts-hidden" (change)="addImages($event.srcElement.files)" multiple style="display: none;"/>
-            <button md-raised-button (click)="clickInput()">Choose Image(s)</button>
+            <button md-raised-button id="upload-button" (click)="clickInput()">Choose Image(s)</button>
         </div>
         <div class="form-element" id="buttons">
             <button md-raised-button id="submit" color="primary" (click)="newPost()">Submit</button>

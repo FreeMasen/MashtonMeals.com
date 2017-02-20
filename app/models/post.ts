@@ -7,7 +7,7 @@ export class Post {
     images: string[] 
     constructor(id: number = -1,
                 title: string = '',
-                type: string = 'recipe',
+                type: string = 'recipes',
                 postDate:Date = new Date(),
                 contents: string[] = [''],
                 images: string[] = []

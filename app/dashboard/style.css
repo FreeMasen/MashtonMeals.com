@@ -42,6 +42,13 @@
     justify-content: space-around;
 }
 
+.snippet-image {
+    height: 186px;
+    margin-left: auto;
+    margin-right: auto;
+    width: unset;
+}
+
 #nav-buttons {
     width: 100%;
     display: flex;

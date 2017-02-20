@@ -44,3 +44,36 @@
     border-radius: 2px;
     padding-left: 10px;
 }
+
+.image-container {
+    height: 100%;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+}
+
+.image-desc {
+    width: 100%;
+    text-align: center;
+    border: 2px lightgrey solid;
+}
+
+.image-dropdown {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    border-radius: 2px 0;
+}
+
+.dropdown-option {
+    border-left: 2px lightgrey solid;
+    border-right: 2px lightgrey solid;
+    border-bottom: 2px lightgrey solid;
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    background-color: lightgrey;
+}

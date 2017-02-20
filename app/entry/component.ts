@@ -17,7 +17,8 @@ import { Post } from '../models/post'
 })
 export class Entry implements OnInit {
     pendingPost = new Post()
-    files: File[] = []
+    visible: number[] = []
+    _imageOptions: string[] = []
     constructor(private poster: Poster,
                 private auth: Auth,
                 private messenger: Messenger,
@@ -49,11 +50,58 @@ export class Entry implements OnInit {
         for (var i=0;i<files.length;i++) {
             self.poster.uploadImage(files[i])
                 .then(response => {
-                    console.log(response.json())
                     this.pendingPost.images.push(response.json().path)
+                    this.addImageOption()
                 }).catch(message => {
                     self.messenger.display(message)
                 })
         }
+    }
+
+    isVisable(i: number): boolean {
+        return this.visible.includes(i)
+    }
+
+    toggleVisable(i: number): void {
+        if (this.isVisable(i)) {
+            this.visible = this.visible.filter(entry => {
+                return entry != i
+            })
+        } else {
+            this.visible.push(i)
+        }
+    }
+
+    clickInput() {
+        document.getElementById('filePahts-hidden').click()
+    }
+
+    chooseOption(dropdown: number, selection: string) {
+        var current = this.pendingPost.images[dropdown]
+        this.pendingPost.images[dropdown] = this.pendingPost.images[this.getIndex(selection)]
+        this.pendingPost.images[this.getIndex(selection)] = current
+        this.toggleVisable(dropdown)
+    }
+
+    imageOptions(i: number): string[] {
+        return this._imageOptions.filter((entry, j) => {
+            return i != j
+        })
+    }
+
+    addImageOption() {
+        if (this._imageOptions.length < 1) {
+            this._imageOptions.push('Title Image')
+        } else {
+            this._imageOptions.push(`PostImage ${this._imageOptions.length}`)
+        }
+    }
+
+    getIndex(text: string): number {
+        for (var i = 0; i < this._imageOptions.length; i++) {
+            var entry = this._imageOptions[i]
+            if (entry == text) return i 
+        }
+        return -1
     }
 }

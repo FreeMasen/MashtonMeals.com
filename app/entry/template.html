@@ -12,21 +12,29 @@
             </textarea>
         </md-input-container>
         <md-radio-group [(ngModel)]="pendingPost.type" name="type" class="form-element" id="type">
-            <md-radio-button value="recipe">Recipe</md-radio-button>
-            <md-radio-button value="review">Review</md-radio-button>
+            <md-radio-button value="recipes">Recipe</md-radio-button>
+            <md-radio-button value="reviews">Review</md-radio-button>
         </md-radio-group>
         <div class="form-element">
             <div id="images">
-                <img *ngFor="let src of pendingPost.images" [src]="src" class="image"/>
-                <img *ngFor="let pending of filePahts" [src]="pending" class="image pending" />
+                <div class="image-container" *ngFor="let src of pendingPost.images;let i = index">
+                    <img [src]="src" class="image"/>
+                    <div class="image-desc">
+                        <span>{{ _imageOptions[i] }}
+                            <button md-raised-button color="primary" (click)="toggleVisable(i)">
+                                <md-icon>expand_more</md-icon>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="image-dropdown" *ngIf="isVisable(i)">
+                        <span class="dropdown-option" *ngFor="let option of imageOptions(i);" (click)="chooseOption(i, option)">{{ option }}</span>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="upload">
-            <input type="file" id="filePahts" (change)="addImages($event.srcElement.files)" multiple/>
-            <button md-raised-button id="upload-button" >Upload</button>
-        </div>
-        <div *ngFor="let image of status">
-            {{image.name}}: {{image.status}}
+            <input type="file" id="filePahts-hidden" (change)="addImages($event.srcElement.files)" multiple style="display: none;"/>
+            <button md-raised-button (click)="clickInput()">Choose Image(s)</button>
         </div>
         <div class="form-element" id="buttons">
             <button md-raised-button id="submit" color="primary" (click)="newPost()">Submit</button>

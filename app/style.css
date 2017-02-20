@@ -47,8 +47,17 @@
 }
 
 #message {
-    color: pink;
     font-size: 20pt;
     width: 100%;
     text-align: center
+}
+
+#message .error {
+    color: pink;
+}
+
+#sidebar {
+    width: 15%;
+    margin: 5px;
+    background-color: grey;
 }

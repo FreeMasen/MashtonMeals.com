@@ -87,4 +87,26 @@ export class Poster {
                         )
                     })
     }
+
+    update(post: Post): Promise<string> {
+        return this.http.put(`post/${post._id}`, post)
+            .toPromise()
+            .then(response => {
+                return response.json().message
+            })
+            .catch(error => {
+                return error.message
+            })
+    }
+
+    delete(id: number): Promise<string> {
+        return this.http.delete(`post/${id}`)
+            .toPromise()
+            .then(response => {
+                return response.json().message
+            })
+            .catch(error => {
+                return error.message
+            })
+    }
 }

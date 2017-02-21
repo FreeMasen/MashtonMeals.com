@@ -103,8 +103,8 @@ app.delete('/image', (req, res) => {
   })
 })
 
-app.delete('/post', (req, res) => {
-  poster.removePost(req.body._id, (err) => {
+app.delete('/post/:id', (req, res) => {
+  poster.removePost(req.params.id, (err) => {
     if (err) res.status(500).send(err.message)
     res.send('Post removed')
   })

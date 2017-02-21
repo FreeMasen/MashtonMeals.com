@@ -19,8 +19,8 @@
         </md-card>
     </md-card-content> 
     <div id="page-bar">
-        <button md-raised-button class="bar-element"><</button>
-        <span bar-element>{{ page }}</span>
-        <button md-raised-button bar-element>></button>
+        <button md-raised-button class="bar-element" [disabled]="page < 1" (click)="paginate(true)"><</button>
+        <span class="bar-element">{{ page + 1}}</span>
+        <button md-raised-button class="bar-element" [disabled]="lastPage" (click)="paginate()">></button>
     </div>
 </md-card>

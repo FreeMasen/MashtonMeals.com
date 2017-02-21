@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
     menuVis: boolean = false
     logoutVis: boolean = false
     message: string = ''
+    messageError: boolean = false
     menuItems = [
         {path: ["list","recipes","0"],
         text: "Recipes"},
@@ -30,8 +31,9 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.checkUser()
-        this.messenger.addListener((text) => {
+        this.messenger.addListener((text: string, error: boolean = false) => {
             this.message = text
+            this.messageError = error
         })
     }
 

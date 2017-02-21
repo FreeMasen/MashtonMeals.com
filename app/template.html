@@ -1,16 +1,16 @@
 <md-card id="menu" *ngIf="menuVis">
     <div class="menu-items" *ngFor="let item of menuItems">
-        <button md-button color="primary" (click)="goToItem(item.path)" class="menu-item">{{item.text}}</button>
+        <button md-button color="accent" (click)="goToItem(item.path)" class="menu-item">{{item.text}}</button>
     </div>
 </md-card>
 <md-card id="main" [ngClass]="{pushed: menuVis}">
-    <md-toolbar id="title-bar" color="primary" >
-        <button md-button id="menu-button" (click)="toggleMenu()" >
+    <md-toolbar id="title-bar">
+        <button md-button id="menu-button" color="accent" (click)="toggleMenu()" >
             <md-icon>menu</md-icon>
         </button>
         <span id="title" (click)="goToItem(['dashboard'])">Mashton Meals</span>
         <button id="logout" md-raised-button color="primary" (click)="logout()" *ngIf="logoutVis"><span>Logout</span></button>
-        <md-toolbar-row id="message-container" *ngIf="message.length > 0">
+        <md-toolbar-row id="message-container" *ngIf="message.length > 0" [ngClass]="{error: messageError}">
             <span id="message">{{message}}</span>
         </md-toolbar-row>
     </md-toolbar>

@@ -5,7 +5,6 @@
     display: flex;
     flex-flow: column;
     z-index: 100%;
-    background: white;
     position: absolute;
 }
 
@@ -35,6 +34,7 @@
     font-size: 20pt;
     font-weight: bold;
     cursor: pointer;
+    color: #0097a7;
 }
 
 #logout {

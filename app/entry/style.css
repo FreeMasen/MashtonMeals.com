@@ -11,14 +11,6 @@
     margin: 2px;
 }
 
-#post-title {
-
-} 
-#title {
-
-}
-#post-content {
-}
 #content {
     height: 200px;
     overflow: auto;
@@ -33,13 +25,6 @@
 .image {
     height: 100px;
     margin-right: 5px;
-}
-
-.warning-message {
-    background-color: darkred;
-    color: pink;
-    border-radius: 2px;
-    padding-left: 10px;
 }
 
 .image-container {

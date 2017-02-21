@@ -17,9 +17,8 @@ import { Post } from '../models/post'
 export class Dashboard implements OnInit { 
     recent: Post[] = []
     pageNumber: number = -1
-    displaySelected = false
     headerImage = 'assets/images/avatar.jpg'
-    postCount = -1
+    pageCount = -1
     constructor(
         private router: Router,
         private poster: Poster,
@@ -29,12 +28,8 @@ export class Dashboard implements OnInit {
     ngOnInit(): void {
         this.paginate()
     }
-    selectPost(id) {
+    selectPost(id): void {
         this.router.navigate(['single', id])
-    }
-
-    dismissPost() {
-        this.displaySelected = false
     }
 
     paginate(back: boolean = false, numberOfPages: number = 1): void {
@@ -51,7 +46,7 @@ export class Dashboard implements OnInit {
             })
         this.poster.getCount('all')
             .then(count => {
-                this.postCount = count
+                this.pageCount = count / 9
             })
     }
 
@@ -61,6 +56,6 @@ export class Dashboard implements OnInit {
     }
 
     get lastPage(): boolean {
-        return this.pageNumber * 9 == this.postCount
+        return (this.pageNumber + 1) >= this.pageCount
     }
 }

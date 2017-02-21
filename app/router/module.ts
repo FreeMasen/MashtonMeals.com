@@ -10,7 +10,7 @@ import { Single } from '../single/component'
 const routes: Routes = [
     {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
     {path: 'dashboard', component: Dashboard},
-    {path: 'entry', component: Entry},
+    {path: 'entry/:id', component: Entry},
     {path: 'login', component: Login},
     {path: 'list/:type/:page', component: List},
     {path: 'single/:id', component: Single}

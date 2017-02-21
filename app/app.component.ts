@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
             .checkUser()
             .then(status => {
                 if (status === true) {
-                    this.resetMenuItem(2, ["entry"], "New Post")
+                    this.resetMenuItem(2, ["entry", "new"], "New Post")
                     this.logoutVis = true
                 }
             }).catch(error => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { Form } from '@angular/forms'
 
 import { Observable } from 'rxjs'
@@ -19,10 +19,12 @@ export class Entry implements OnInit {
     pendingPost = new Post()
     visible: number[] = []
     _imageOptions: string[] = []
+    action: () => void
     constructor(private poster: Poster,
                 private auth: Auth,
                 private messenger: Messenger,
-                private router: Router) {}
+                private router: Router,
+                private route: ActivatedRoute) {}
 
     ngOnInit(): void {
         this.auth.checkUser()
@@ -30,11 +32,21 @@ export class Entry implements OnInit {
                 if (!result) {
                     this.messenger.display('Unauthoried page, re-routing to dahsboard')
                     this.router.navigate(['dashboard'])
+                } else {
+                    this.route.params.forEach(params => {
+                        var id = params['id']
+                        if (id != 'new') {
+                            this.poster.single(id)
+                                .then(response => {
+                                    this.pendingPost = response
+                                })
+                        }
+                    })
                 }
             })
     }
 
-    newPost() {
+    newPost(): void {
         this.poster.post(this.pendingPost)
             .then(response => {
                 this.messenger.display(response)
@@ -42,6 +54,28 @@ export class Entry implements OnInit {
             })
             .catch(error => {
                 this.messenger.display(error.message)
+            })
+    }
+
+    updatePost(): void {
+        this.poster.update(this.pendingPost)
+            .then(response => {
+                this.messenger.display(response)
+                this.router.navigate(['dashboard'])
+            })
+            .catch(message => {
+                this.messenger.display(message)
+            })
+    }
+
+    deletePost(): void {
+        this.poster.delete(this.pendingPost._id)
+            .then(response => {
+                this.messenger.display(response)
+                this.router.navigate(['dashboard'])
+            })
+            .catch(message => {
+                this.messenger.display(message)
             })
     }
     

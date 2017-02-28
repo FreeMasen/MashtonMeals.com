@@ -35,3 +35,7 @@
     font-size: 12pt;
     line-height: 18pt;
 }
+
+#edit-button {
+    margin-left: 5px;
+}

@@ -15,7 +15,7 @@ Poster.prototype.newPost = function(post, cb) {
 }
 
 Poster.prototype.updatePost = function(post, cb) {
-    db.posts.update({_id: post._id}, post, (err) => {
+    db.posts.update({_id: mongo.ObjectId(post._id)}, post, (err) => {
         if (err) return cb(err)
         cb(null, post)
     })
@@ -59,8 +59,8 @@ Poster.prototype.removeImage = function(filenpath, cb) {
     })
 }
 
-Poster.prototype.removePost = function(id, db) {
-    db.posts.remove({_id: id}, (err) => {
+Poster.prototype.removePost = function(id, cb) {
+    db.posts.remove({_id: mongo.ObjectId(id)}, (err) => {
         if (err) return cb(err)
         cb(null)
     })

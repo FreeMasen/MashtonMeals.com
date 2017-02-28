@@ -57,7 +57,6 @@ export class Poster {
     }
 
     post(post: Post): Promise<string> {
-        post.contents = this.breakContent(post.contents[0])
         return this.http.post(`/post`,
             post)
             .toPromise()
@@ -66,10 +65,6 @@ export class Poster {
             }).catch(error => {
                 return new Error('Error saving post')
             })
-    }
-
-    breakContent(content: string): Array<string> {
-        return content.split("##")
     }
 
     single(id): Promise<Post> {
@@ -92,7 +87,7 @@ export class Poster {
         return this.http.put(`post/${post._id}`, post)
             .toPromise()
             .then(response => {
-                return response.json().message
+                return response.text()
             })
             .catch(error => {
                 return error.message
@@ -103,7 +98,7 @@ export class Poster {
         return this.http.delete(`post/${id}`)
             .toPromise()
             .then(response => {
-                return response.json().message
+                return response.text()
             })
             .catch(error => {
                 return error.message

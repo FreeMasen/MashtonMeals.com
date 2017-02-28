@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 import { Location } from '@angular/common'
-import { ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 
 import { Poster } from '../poster/service'
 import { Post } from '../models/post'
+import { Auth } from '../auth/service'
+import { Messenger } from '../messenger/service'
 
 @Component({
     selector: '<single>',
@@ -12,9 +14,13 @@ import { Post } from '../models/post'
 })
 export class Single implements OnInit {
     selectedPost: Post = new Post()
+    edit: boolean = false
     constructor(private location: Location,
                 private route: ActivatedRoute,
-                private poster: Poster) { }
+                private poster: Poster,
+                private auth: Auth,
+                private router: Router,
+                private messenger: Messenger) { }
 
     ngOnInit(): void {
         var id
@@ -27,6 +33,14 @@ export class Single implements OnInit {
             .then(post => {
                 this.selectedPost = post
             })
+        this.auth.checkUser()
+            .then(response => {
+                this.edit = response
+            })
+    }
+
+    editPost(): void {
+        this.router.navigate(['entry', this.selectedPost._id])
     }
     
     get dt(): string {

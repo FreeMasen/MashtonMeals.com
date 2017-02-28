@@ -26,7 +26,7 @@ export class Login {
             .then(user => {
                 this.router.navigate(['dashboard'])
             }).catch(error => {
-                this.messenger.display(error.message || 'Unknown error occured')
+                this.messenger.display(error.message || 'Unknown error occured', true)
             })
     }
 

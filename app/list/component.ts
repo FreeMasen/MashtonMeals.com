@@ -43,7 +43,7 @@ export class List implements OnInit {
                 this.posts = posts
             })
             .catch(function(e) {
-                this.messenger.display(e.message || 'Unknow Error getting posts')
+                this.messenger.display(e.message || 'Unknow Error getting posts', true)
             })
         this.poster.getCount(this.type)
             .then(count => {

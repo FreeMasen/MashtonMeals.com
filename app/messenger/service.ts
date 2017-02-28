@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core'
 
 @Injectable()
 export class Messenger {
-    listener: (string) => void = (text) => {}
-    display(text: string): void {
-        this.listener(text)
-        setTimeout(this.listener, 5000, '')
+    listener: (text: string, error: boolean) => void = (text) => {}
+    display(text: string, error: boolean = false): void {
+        this.listener(text, error)
+        setTimeout(this.listener, 3000, '')
     }
 
-    addListener(listener: (string) => void): void {
+    addListener(listener: (string, boolean) => void): void {
         this.listener = listener
     }
 }

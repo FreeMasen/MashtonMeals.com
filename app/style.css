@@ -52,8 +52,9 @@
     text-align: center
 }
 
-#message .error {
+.error {
     color: pink;
+    background-color: darkred;
 }
 
 #sidebar {

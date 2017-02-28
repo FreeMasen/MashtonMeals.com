@@ -1,7 +1,8 @@
 <md-card id="single-view" *ngIf="selectedPost != undefined">
     <md-card-header>
-        <md-card-title class="selected-post-title">
-        {{ selectedPost.title }}
+        <md-card-title id="post-header">
+        <span class="selected-post-title">{{ selectedPost.title }}</span>
+        <button md-mini-fab id="edit-button" (click)="editPost()" *ngIf="edit"><md-icon>mode_edit</md-icon></button>
         </md-card-title>
         <md-card-subtitle class="selected-post-date">
             {{ dt }}

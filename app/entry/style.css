@@ -1,6 +1,15 @@
-#entry {
-
+#title {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    justify-content: space-between;
 }
+
+#delete-post {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 #new-post {
     display: flex;
     flex-flow: column;

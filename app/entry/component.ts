@@ -17,9 +17,13 @@ import { Post } from '../models/post'
 })
 export class Entry implements OnInit {
     pendingPost = new Post()
+    pendingContents: string = ''
     visible: number[] = []
     _imageOptions: string[] = []
-    action: () => void
+    title = "New Post"
+    titleInvalid = false
+    contentsInvalid = false
+    action: () => void = this.newPost
     constructor(private poster: Poster,
                 private auth: Auth,
                 private messenger: Messenger,
@@ -36,9 +40,16 @@ export class Entry implements OnInit {
                     this.route.params.forEach(params => {
                         var id = params['id']
                         if (id != 'new') {
+                            this.title = 'Edit Post'
+                            this.action = this.updatePost
+                            
                             this.poster.single(id)
                                 .then(response => {
                                     this.pendingPost = response
+                                    this.pendingContents = this.pendingPost.contents.join('\n##\n')
+                                    response.images.forEach(_ => {
+                                        this.addImageOption()
+                                    })
                                 })
                         }
                     })
@@ -46,26 +57,61 @@ export class Entry implements OnInit {
             })
     }
 
+    updatePostContents() {
+        this.pendingPost.contents = this.pendingContents.split('##').map(entry => {
+            return entry.trim()
+        })
+
+    }
+
+    validate(): boolean {
+        if (this.pendingPost.title.length <= 0 ) {
+            this.titleInvalid = true
+            return false
+        }
+        if (this.pendingPost.contents.length >
+            this.pendingPost.images.length - 1) {
+            this.messenger.display('More contents than images, please re-evaluate', true)
+            return false
+        }
+        if (this.pendingContents.length <= 0) {
+            this.messenger.display('Contents cannot be empty', true)
+            return false
+        }
+        if (this.pendingPost.contents.length < 
+            this.pendingPost.images.length - 1) {
+            this.messenger.display('More images than contents, please re-evaluate', true)
+            return false
+        }
+        return true
+    }
+
     newPost(): void {
-        this.poster.post(this.pendingPost)
-            .then(response => {
-                this.messenger.display(response)
-                this.router.navigate(['dashboard'])
-            })
-            .catch(error => {
-                this.messenger.display(error.message)
-            })
+        this.updatePostContents()
+        if (this.validate()) {
+            this.poster.post(this.pendingPost)
+                .then(response => {
+                    this.messenger.display(response)
+                    this.router.navigate(['dashboard'])
+                })
+                .catch(error => {
+                    this.messenger.display(error.message, true)
+                })
+        }
     }
 
     updatePost(): void {
-        this.poster.update(this.pendingPost)
-            .then(response => {
-                this.messenger.display(response)
-                this.router.navigate(['dashboard'])
-            })
-            .catch(message => {
-                this.messenger.display(message)
-            })
+        this.updatePostContents()
+        if (this.validate()) {
+            this.poster.update(this.pendingPost)
+                .then(response => {
+                    this.messenger.display(response)
+                    this.router.navigate(['dashboard'])
+                })
+                .catch(message => {
+                    this.messenger.display(message, true)
+                })
+        }
     }
 
     deletePost(): void {
@@ -75,7 +121,7 @@ export class Entry implements OnInit {
                 this.router.navigate(['dashboard'])
             })
             .catch(message => {
-                this.messenger.display(message)
+                this.messenger.display(message, true)
             })
     }
     
@@ -87,7 +133,7 @@ export class Entry implements OnInit {
                     this.pendingPost.images.push(response.json().path)
                     this.addImageOption()
                 }).catch(message => {
-                    self.messenger.display(message)
+                    self.messenger.display(message, true)
                 })
         }
     }

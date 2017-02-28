@@ -1,14 +1,14 @@
 <md-card id="entry">
-    <h1>New Post</h1>
+    <div id="title">
+        <h1>{{ title }}</h1>
+        <button id="delete-post" md-mini-fab (click)="deletePost()"><md-icon *ngIf="pendingPost._id != -1">delete</md-icon></button>
+    </div>
     <form id="new-post">
         <md-input-container id="post-title" class="form-element">
             <input type="text" md-input placeholder="title" id="title" required [(ngModel)]="pendingPost.title" name="title" #name="ngModel" />
         </md-input-container>
-        <div [hidden]="name.valid || name.pristine" class="warning-message form-element">
-            Title is required.
-        </div>
         <md-input-container id="post-content" class="form-element">
-            <textarea rows="30" cols="15" md-input placeholder="post content" id="content" [(ngModel)]="pendingPost.contents[0]" name="content" required >
+            <textarea rows="30" cols="15" md-input placeholder="post content" id="content" [(ngModel)]="pendingContents" name="content" required >
             </textarea>
         </md-input-container>
         <md-radio-group [(ngModel)]="pendingPost.type" name="type" class="form-element" id="type">
@@ -36,7 +36,7 @@
             <button md-raised-button id="upload-button" (click)="clickInput()">Choose Image(s)</button>
         </div>
         <div class="form-element" id="buttons">
-            <button md-raised-button id="submit" color="primary" (click)="newPost()">Submit</button>
+            <button md-raised-button id="submit" color="primary" (click)="action()">Submit</button>
             <button md-raised-button id="cancel" color="warning">Cancel</button>
         </div>
     </form>

@@ -41,3 +41,8 @@
     display: flex;
     justify-content: center;
 }
+
+#sidebar {
+    background-color: darkgray;
+    width: 20%;
+}

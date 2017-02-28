@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.checkUser()
-        this.messenger.addListener((text: string, error: boolean = false) => {
+        this.messenger.addListener((text: string, error: boolean) => {
             this.message = text
             this.messageError = error
         })
